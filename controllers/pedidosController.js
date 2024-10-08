@@ -1,7 +1,10 @@
-const getPedidos = (req, res) => {
+const asyncHandler = require('express-async-handler')
+
+const getPedidos = asyncHandler(async (req, res) => {
     res.status(200).json({ message: 'Obtener pedidos' })
-}
-const setPedidos = (req, res) => {
+})
+
+const setPedidos = asyncHandler(async (req, res) => {
 
     if (!req.body.texto) {
         res.status(400)
@@ -11,13 +14,15 @@ const setPedidos = (req, res) => {
     console.log(req.body);
 
     res.status(201).json({ message: 'Crear pedido' })
-}
-const updatePedidos = (req, res) => {
+})
+
+const updatePedidos = asyncHandler(async (req, res) => {
     res.status(201).json({ message: `Modificar pedido ${req.params.id}` })
-}
-const deletePedidos = (req, res) => {
+})
+
+const deletePedidos = asyncHandler(async (req, res) => {
     res.status(201).json({ message: `Eliminar pedido ${req.params.id}` })
-}
+})
 
 module.exports = {
     getPedidos,
