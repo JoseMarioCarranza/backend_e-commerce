@@ -31,11 +31,32 @@ const setProductos = asyncHandler(async (req, res) => {
 })
 
 const updateProductos = asyncHandler(async (req, res) => {
-    res.status(201).json({ message: `Modificar producto ${req.params.id}` })
+
+    const producto = await Producto.findById(req.params.id)
+
+    if (!producto) {
+        res.status(400)
+        throw new Error('El producto no fué encontrado')
+    }
+
+    const productoUpdated = await Producto.findByIdAndUpdate(req.params.id, req.body, { new: true })
+
+    res.status(201).json(productoUpdated)
 })
 
 const deleteProductos = asyncHandler(async (req, res) => {
-    res.status(201).json({ message: `Eliminar producto ${req.params.id}` })
+
+    const producto = await Producto.findById(req.params.id)
+
+    if (!producto) {
+        res.status(400)
+        throw new Error('El producto no fué encontrado')
+    }
+
+    await Producto.deleteOne(producto)
+
+    res.status(201).json({ id: producto.id })
+
 })
 
 module.exports = {
