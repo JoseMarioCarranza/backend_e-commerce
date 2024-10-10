@@ -77,7 +77,7 @@ const login = asyncHandler(async (req, res) => {
 })
 
 const getData = asyncHandler(async (req, res) => {
-    res.status(200).json({ message: `Datos del usuario` })
+    res.status(200).json(req.user)
 })
 
 const makeAdmin = asyncHandler(async (req, res) => {
