@@ -1,13 +1,16 @@
 const express = require('express')
 const router = express.Router()
-const { getProductos, setProductos, updateProductos, deleteProductos } = require('../controllers/productosController')
+const { getProductos, misProductos, setProductos, updateProductos, deleteProductos } = require('../controllers/productosController')
+const { protect } = require('../middleware/authMiddleware')
 
 router.get('/', getProductos)
 
-router.post('/', setProductos)
+router.get('/misproductos', protect, misProductos)
 
-router.put('/:id', updateProductos)
+router.post('/', protect, setProductos)
 
-router.delete('/:id', deleteProductos)
+router.put('/:id', protect, updateProductos)
+
+router.delete('/:id', protect, deleteProductos)
 
 module.exports = router
