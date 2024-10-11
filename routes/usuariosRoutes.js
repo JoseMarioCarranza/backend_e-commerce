@@ -9,6 +9,6 @@ router.post('/singup', singUp)
 
 router.get('/data', protect, getData)
 
-router.put('/makeadmin/:id', protect, makeAdmin)
+router.post('/makeadmin', protect, makeAdmin)
 
 module.exports = router

@@ -81,7 +81,33 @@ const getData = asyncHandler(async (req, res) => {
 })
 
 const makeAdmin = asyncHandler(async (req, res) => {
-    res.status(200).json({ message: `Usuario con id ${req.params.id} convertido en administrador` })
+
+    if (!req.user.esAdmin) {
+        res.status(401)
+        throw new Error("Necesitas ser admin para actualizar un producto")
+    }
+
+    const id = req.body.id.toString()
+
+    if (!id) {
+        res.status(400)
+        throw new Error('Por favor introduzca un id para hacerlo administrador')
+    }
+
+    // Comprobación de la existencia del usuario
+    const userExiste = await User.findById(id)
+
+    if (!userExiste) {
+        res.status(400)
+        throw new Error("Ese usuario no existe")
+    } else {
+
+        const usuarioUpdated = await User.findByIdAndUpdate(id, { esAdmin: true }, { new: true })
+
+        res.status(201).json(usuarioUpdated)
+
+    }
+
 })
 
 const generarToken = (id) => {
