@@ -1,6 +1,6 @@
 # Backend de E-Commerce
 
-Este proyecto es un backend para un e-commerce que maneja autenticación y autorización mediante JWT, y utiliza MongoDB como base de datos. El backend está estructurado para gestionar usuarios, productos y pedidos, y contiene rutas, modelos, middlewares, controladores y variables de entorno. Está desplegado en [Render](https://backend-e-commerce-y7xl.onrender.com).
+Este proyecto es un backend para un e-commerce que maneja autenticación y autorización mediante JWT, y utiliza MongoDB como base de datos. El backend está estructurado para gestionar usuarios, productos y pedidos, y contiene rutas, modelos, middlewares, controladores y variables de entorno. Está desplegado en Render en https://backend-e-commerce-y7xl.onrender.com
 
 ## Características del Proyecto
 
@@ -13,7 +13,7 @@ Este proyecto es un backend para un e-commerce que maneja autenticación y autor
 
 ## Pruebas del Proyecto
 
-Puedes probar las funcionalidades del proyecto accediendo al despliegue en [Render](https://backend-e-commerce-y7xl.onrender.com). 
+Puedes probar las funcionalidades del proyecto accediendo al despliegue en Render en https://backend-e-commerce-y7xl.onrender.com
 
 Para funciones administrativas, utiliza uno de los siguientes usuarios:
 
