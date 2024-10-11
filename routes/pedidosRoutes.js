@@ -1,13 +1,14 @@
 const express = require('express')
 const router = express.Router()
 const { getPedidos, setPedidos, updatePedidos, deletePedidos } = require('../controllers/pedidosController')
+const { protect } = require('../middleware/authMiddleware')
 
-router.get('/', getPedidos)
+router.get('/', protect, getPedidos)
 
-router.post('/', setPedidos)
+router.post('/', protect, setPedidos)
 
-router.put('/:id', updatePedidos)
+router.put('/:id', protect, updatePedidos)
 
-router.delete('/:id', deletePedidos)
+router.delete('/:id', protect, deletePedidos)
 
 module.exports = router
