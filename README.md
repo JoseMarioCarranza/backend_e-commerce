@@ -1,183 +1,192 @@
-# Backend de E-Commerce
+# E-Commerce Backend
 
-Este proyecto es un backend para un e-commerce que maneja autenticación y autorización mediante JWT, y utiliza MongoDB como base de datos. El backend está estructurado para gestionar usuarios, productos y pedidos, y contiene rutas, modelos, middlewares, controladores y variables de entorno. Está desplegado en Render: https://backend-e-commerce-y7xl.onrender.com
+This project is a backend for an e-commerce platform that handles authentication and authorization using JWT and uses MongoDB as the database. The backend is structured to manage users, products, and orders, and includes routes, models, middlewares, controllers, and environment variables. It is deployed on Render: [E-Commerce Backend](https://backend-e-commerce-y7xl.onrender.com)
 
-## Características del Proyecto
+## Project Features
 
-- **Base de datos:** MongoDB alojada en Mongo Atlas.
-- **Colecciones:** Usuarios, Productos, Pedidos.
-- **Rutas y Endpoints:** CRUD de productos, gestión de usuarios y pedidos.
-- **Autenticación y Autorización:** Uso de JWT para proteger endpoints.
-- **Control de Acceso:** CRUD de productos protegido para usuarios con rol de administrador.
-- **Hashing de Contraseñas:** Para asegurar las contraseñas de los usuarios.
+- **Database:** MongoDB hosted on Mongo Atlas.
+- **Collections:** Users, Products, Orders.
+- **Routes and Endpoints:** CRUD for products, user, and order management.
+- **Authentication and Authorization:** JWT-based protection for endpoints.
+- **Access Control:** CRUD for products restricted to users with admin roles.
+- **Password Hashing:** Ensures user password security.
 
-## Pruebas del Proyecto
+## Project Testing
 
-Puedes probar las funcionalidades del proyecto accediendo al despliegue en Render: https://backend-e-commerce-y7xl.onrender.com
+You can test the project functionality by accessing the deployment on Render: [E-Commerce Backend](https://backend-e-commerce-y7xl.onrender.com)
 
-Para funciones administrativas, utiliza uno de los siguientes usuarios:
+For administrative functions, use one of the following credentials:
 
-1. **Usuario:** jose@coreo.com | **Contraseña:** 123456
-2. **Usuario:** jorge@correo.com | **Contraseña:** 123456
+1. **Email:** jose@coreo.com | **Password:** 123456
+2. **Email:** jorge@correo.com | **Password:** 123456
 
-## Funcionalidades
+## Features
 
-### Funciones para Pedidos
+### Order Management Functions
 
-1. **Obtener Pedidos**
-   - **Método:** GET
-   - **Ruta:** `/api/pedidos`
-   - **Función:** Obtiene los pedidos del usuario actual.
-   - **Requiere:** Bearer token.
+1. **Get Orders**
+   - **Method:** GET
+   - **Route:** `/api/pedidos`
+   - **Description:** Retrieves the orders of the current user.
+   - **Requires:** Bearer token.
 
-2. **Crear Pedido**
-   - **Método:** POST
-   - **Ruta:** `/api/pedidos`
-   - **Función:** Crear un nuevo pedido.
-   - **Requiere:** Bearer token.
+2. **Create Order**
+   - **Method:** POST
+   - **Route:** `/api/pedidos`
+   - **Description:** Creates a new order.
+   - **Requires:** Bearer token.
    - **Body:**
      ```json
      {
-       "producto": "id_del_producto",
-       "cantidad": "número_de_cantidad",
-       "precio": "precio_total"
+       "producto": "product_id",
+       "cantidad": "quantity_number",
+       "precio": "total_price"
      }
      ```
 
-3. **Modificar Pedido**
-   - **Método:** PUT
-   - **Ruta:** `/api/pedidos/:id`
-   - **Función:** Modificar un pedido existente.
-   - **Requiere:** Bearer token.
+3. **Update Order**
+   - **Method:** PUT
+   - **Route:** `/api/pedidos/:id`
+   - **Description:** Updates an existing order.
+   - **Requires:** Bearer token.
    - **Body:**
      ```json
      {
-       "cantidad": "nueva_cantidad",
-       "precio": "nuevo_precio"
+       "cantidad": "new_quantity",
+       "precio": "new_price"
      }
      ```
 
-4. **Eliminar Pedido**
-   - **Método:** DELETE
-   - **Ruta:** `/api/pedidos/:id`
-   - **Función:** Elimina un pedido existente.
-   - **Requiere:** Bearer token.
+4. **Delete Order**
+   - **Method:** DELETE
+   - **Route:** `/api/pedidos/:id`
+   - **Description:** Deletes an existing order.
+   - **Requires:** Bearer token.
 
-### Funciones para Productos
+### Product Management Functions
 
-1. **Obtener Productos**
-   - **Método:** GET
-   - **Ruta:** `/api/productos`
-   - **Función:** Obtiene todos los productos.
+1. **Get Products**
+   - **Method:** GET
+   - **Route:** `/api/productos`
+   - **Description:** Retrieves all products.
 
-2. **Obtener Mis Productos**
-   - **Método:** GET
-   - **Ruta:** `/api/productos/misProductos`
-   - **Función:** Obtiene los productos creados por el usuario actual (solo administrador).
-   - **Requiere:** Bearer token y rol de administrador.
+2. **Get My Products**
+   - **Method:** GET
+   - **Route:** `/api/productos/misProductos`
+   - **Description:** Retrieves products created by the current user (admin only).
+   - **Requires:** Bearer token and admin role.
 
-3. **Crear Producto**
-   - **Método:** POST
-   - **Ruta:** `/api/productos`
-   - **Función:** Crear un nuevo producto.
-   - **Requiere:** Bearer token y rol de administrador.
+3. **Create Product**
+   - **Method:** POST
+   - **Route:** `/api/productos`
+   - **Description:** Creates a new product.
+   - **Requires:** Bearer token and admin role.
    - **Body:**
      ```json
      {
-       "nombre": "nombre_del_producto",
-       "precio": "precio_del_producto"
+       "nombre": "product_name",
+       "precio": "product_price"
      }
      ```
 
-4. **Modificar Producto**
-   - **Método:** PUT
-   - **Ruta:** `/api/productos/:id`
-   - **Función:** Modificar un producto existente.
-   - **Requiere:** Bearer token y rol de administrador.
+4. **Update Product**
+   - **Method:** PUT
+   - **Route:** `/api/productos/:id`
+   - **Description:** Updates an existing product.
+   - **Requires:** Bearer token and admin role.
    - **Body:**
      ```json
      {
-       "nombre": "nuevo_nombre",
-       "precio": "nuevo_precio"
+       "nombre": "new_name",
+       "precio": "new_price"
      }
      ```
 
-5. **Eliminar Producto**
-   - **Método:** DELETE
-   - **Ruta:** `/api/productos/:id`
-   - **Función:** Elimina un producto existente.
-   - **Requiere:** Bearer token y rol de administrador.
+5. **Delete Product**
+   - **Method:** DELETE
+   - **Route:** `/api/productos/:id`
+   - **Description:** Deletes an existing product.
+   - **Requires:** Bearer token and admin role.
 
-### Funciones para Usuarios
+### User Management Functions
 
-1. **Crear Usuario**
-   - **Método:** POST
-   - **Ruta:** `/api/usuarios/signup`
-   - **Función:** Registra un nuevo usuario.
+1. **Create User**
+   - **Method:** POST
+   - **Route:** `/api/usuarios/signup`
+   - **Description:** Registers a new user.
    - **Body:**
      ```json
      {
-       "name": "nombre_usuario",
-       "email": "correo_usuario",
-       "password": "contraseña"
+       "name": "user_name",
+       "email": "user_email",
+       "password": "password"
      }
      ```
 
-2. **Loguear Usuario**
-   - **Método:** POST
-   - **Ruta:** `/api/usuarios/login`
-   - **Función:** Loguea un usuario.
+2. **Log In User**
+   - **Method:** POST
+   - **Route:** `/api/usuarios/login`
+   - **Description:** Logs in a user.
    - **Body:**
      ```json
      {
-       "email": "correo_usuario",
-       "password": "contraseña"
+       "email": "user_email",
+       "password": "password"
      }
      ```
 
-3. **Obtener Datos del Usuario Actual**
-   - **Método:** GET
-   - **Ruta:** `/api/usuarios/data`
-   - **Función:** Obtiene los datos del usuario autenticado.
-   - **Requiere:** Bearer token.
+3. **Get Current User Data**
+   - **Method:** GET
+   - **Route:** `/api/usuarios/data`
+   - **Description:** Retrieves data of the authenticated user.
+   - **Requires:** Bearer token.
 
-4. **Convertir en Administrador**
-   - **Método:** POST
-   - **Ruta:** `/api/usuarios/makeadmin`
-   - **Función:** Asigna rol de administrador a un usuario.
-   - **Requiere:** Bearer token y rol de administrador.
+4. **Make Admin**
+   - **Method:** POST
+   - **Route:** `/api/usuarios/makeadmin`
+   - **Description:** Assigns admin role to a user.
+   - **Requires:** Bearer token and admin role.
    - **Body:**
      ```json
      {
-       "id": "id_del_usuario"
+       "id": "user_id"
      }
      ```
 
-## Instalación y Uso
+## Installation and Usage
 
-1. Clonar el repositorio:
+1. Clone the repository:
    ```bash
    git clone https://github.com/JoseMarioCarranza/backend_e-commerce/
    ```
 
-2. Instalar dependencias:
+2. Install dependencies:
    ```bash
    npm install
    ```
 
-3. Crear un archivo .env con las siguientes variables:
+3. Create a `.env` file with the following variables:
    ```env
-   NODE_ENV = production / development
-   PORT = tu puerto en el que correra el servidor
+   NODE_ENV=production / development
+   PORT=your_port_number
 
-   MONGO_URI = tu_mongo_uri
+   MONGO_URI=your_mongo_uri
 
-   JWT_SECRET = tu_jwt_secret
+   JWT_SECRET=your_jwt_secret
 
-   JWT_EXPIRES_IN = tiempo
+   JWT_EXPIRES_IN=expiration_time
    ```
 
-4. Ejecutar el servidor:
+4. Run the server:
    ```bash
    npm start
    ```
+
+---
+
+## Contact
+
+- **José Mario Rivera Carranza**
+  - 🌐 Website: [www.ingjosemario.com](https://www.ingjosemario.com)
+  - 📧 Email: [imt_josecarranza@outlook.com](mailto:imt_josecarranza@outlook.com)
+  - 💻 GitHub: [José Mario Carranza](https://github.com/JoseMarioCarranza)
